@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Ordem de Serviço</title>
+    <link rel="stylesheet" href="cadastro.css"> 
+</head>
+<body>
+    <img src="RHATTEO.png" class="textfoda">
+    <img src="OETTAHR.png" class="textfoda2">
+
+    <div class="form-container">
+        <img src="logo.png" alt="Logo Locadora" class="logo">
+        <h1>Cadastro de Ordem de Serviço</h1>
+        <form id="ordemServicoForm">
+            <label for="numeroOS">Número de Ordem de Serviço:</label>
+            <input type="text" id="numeroOS" name="numeroOS" required><br>
+
+            <label for="matriculaFuncionario">Matrícula de Funcionário:</label>
+            <select id="matriculaFuncionario" name="matriculaFuncionario" required>
+            </select><br>
+
+            <label for="cpfCliente">CPF do Cliente:</label>
+            <select id="cpfCliente" name="cpfCliente" required>
+            </select><br>
+
+            <label for="placaVeiculo">Placa do Veículo:</label>
+            <select id="placaVeiculo" name="placaVeiculo" required>
+            </select><br>
+
+            <label for="dataRetirada">Data de Retirada:</label>
+            <input type="date" id="dataRetirada" name="dataRetirada" required><br>
+
+            <label for="dataDevolucao">Data de Devolução:</label>
+            <input type="date" id="dataDevolucao" name="dataDevolucao" required><br>
+
+            <label for="kmRetirada">Km Retirada:</label>
+            <input type="number" id="kmRetirada" name="kmRetirada" required><br>
+
+            <label for="kmDevolucao">Km Devolução:</label>
+            <input type="number" id="kmDevolucao" name="kmDevolucao"><br>
+
+            <label for="status">Status:</label>
+            <select id="status" name="status" required>
+                <option value="Aberto">Aberto</option>
+                <option value="Em andamento">Em andamento</option>
+                <option value="Concluído">Concluído</option>
+            </select><br>
+
+            <button type="button" onclick="salvarOrdemServico()">Salvar</button>
+            <button type="button" onclick="window.location.href='../visordetudo/qntd.OS.html'">Ver Ordens de Serviço</button>
+            <button type="button" onclick="window.location.href='../inicio/inicio.html'">Voltar para Início</button>
+        </form>
+    </div>
+
+    <script>
+        // Função para preencher os campos com objetos ja cadastrados cadastrados
+        function preencherSelects() {
+            const clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+            const veiculos = JSON.parse(localStorage.getItem('veiculos')) || [];
+            const funcionarios = JSON.parse(localStorage.getItem('funcionarios')) || []; 
+
+            const cpfSelect = document.getElementById('cpfCliente');
+            const placaSelect = document.getElementById('placaVeiculo');
+            const matriculaSelect = document.getElementById('matriculaFuncionario'); 
+            clientes.forEach(cliente => {
+                const option = document.createElement('option');
+                option.value = cliente.cpf; 
+                option.textContent = cliente.cpf; 
+                cpfSelect.appendChild(option); 
+            });
+
+            veiculos.forEach(veiculo => {
+                const option = document.createElement('option');
+                option.value = veiculo.placa; 
+                option.textContent = veiculo.placa; 
+                placaSelect.appendChild(option); 
+            });
+
+            funcionarios.forEach(funcionario => {
+                const option = document.createElement('option');
+                option.value = funcionario.matricula; 
+                option.textContent = funcionario.matricula; 
+                matriculaSelect.appendChild(option); 
+            });
+        }
+
+        //  carregar a página
+        window.onload = function() {
+            preencherSelects();
+        };
+
+        function salvarOrdemServico() {
+            const ordens = JSON.parse(localStorage.getItem('ordensServico')) || [];
+            const ordem = {
+                numeroOS: document.getElementById('numeroOS').value,
+                matriculaFuncionario: document.getElementById('matriculaFuncionario').value,
+                cpfCliente: document.getElementById('cpfCliente').value,
+                placaVeiculo: document.getElementById('placaVeiculo').value,
+                dataRetirada: document.getElementById('dataRetirada').value,
+                dataDevolucao: document.getElementById('dataDevolucao').value,
+                kmRetirada: document.getElementById('kmRetirada').value,
+                kmDevolucao: document.getElementById('kmDevolucao').value,
+                status: document.getElementById('status').value
+            };
+            ordens.push(ordem);
+            localStorage.setItem('ordensServico', JSON.stringify(ordens));
+            alert('Ordem de serviço cadastrada com sucesso!');
+        }
+    </script>
+</body>
+</html>

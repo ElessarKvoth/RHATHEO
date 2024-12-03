@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Ordens de Serviço</title>
+    <link rel="stylesheet" href="visor.css">
+</head>
+<body>
+    <img src="RHATTEO.png" class="textfoda">
+    <img src="OETTAHR.png" class="textfoda2">
+
+    <div class="form-container">
+        <h1>Ordens de Serviço Cadastradas</h1>
+        <table id="ordens-table">
+            <tr>
+                <th>Número OS</th>
+                <th>Matrícula</th>
+                <th>CPF</th>
+                <th>Placa</th>
+                <th>Data de Retirada</th>
+                <th>Data de Devolução</th>
+                <th>Km Retirada</th>
+                <th>Km Devolução</th>
+                <th>Status</th>
+            </tr>
+        </table>
+        <button onclick="window.location.href='../inicio/inicio.html'">Voltar para Início</button>
+    </div>
+
+    <script>
+        const ordens = JSON.parse(localStorage.getItem('ordens')) || [];
+        const table = document.getElementById('ordens-table');
+
+        ordens.forEach(ordem => {
+            const row = table.insertRow();
+            row.insertCell(0).innerText = ordem.numeroOS;
+            row.insertCell(1).innerText = ordem.matricula;
+            row.insertCell(2).innerText = ordem.cpf;
+            row.insertCell(3).innerText = ordem.placa;
+            row.insertCell(4).innerText = ordem.dataRetirada;
+            row.insertCell(5).innerText = ordem.dataDevolucao;
+            row.insertCell(6).innerText = ordem.kmRetirada;
+            row.insertCell(7).innerText = ordem.kmDevolucao;
+            row.insertCell(8).innerText = ordem.status;
+        });
+    </script>
+</body>
+</html>

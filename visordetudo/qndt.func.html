@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Funcionários</title>
+    <link rel="stylesheet" href="visor.css">
+</head>
+<body>
+    <img src="RHATTEO.png" class="textfoda">
+    <img src="OETTAHR.png" class="textfoda2">
+
+    <div class="form-container">
+        <h1>Funcionários Cadastrados</h1>
+        <table id="funcionarios-table">
+            <tr>
+                <th>Matrícula</th>
+                <th>Nome</th>
+                <th>Departamento</th>
+                <th>Salário</th>
+                <th>Data de Admissão</th>
+                <th>Quantidade de Filhos</th>
+                <th>Sexo</th>
+                <th>Status</th>
+            </tr>
+        </table>
+        <button onclick="window.location.href='../inicio/inicio.html'">Voltar para Início</button>
+    </div>
+
+    <script>
+        const funcionarios = JSON.parse(localStorage.getItem('funcionarios')) || [];
+        const table = document.getElementById('funcionarios-table');
+
+        funcionarios.forEach(funcionario => {
+            const row = table.insertRow();
+            row.insertCell(0).innerText = funcionario.matricula;
+            row.insertCell(1).innerText = funcionario.nome;
+            row.insertCell(2).innerText = funcionario.departamento;
+            row.insertCell(3).innerText = funcionario.salario;
+            row.insertCell(4).innerText = funcionario.dataAdmissao;
+            row.insertCell(5).innerText = funcionario.quantidadeFilhos;
+            row.insertCell(6).innerText = funcionario.sexo;
+            row.insertCell(7).innerText = funcionario.status;
+        });
+    </script>
+</body>
+</html>

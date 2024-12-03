@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Locadora</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <img src="RHATTEO.png" class="textfoda">
+    <img src="OETTAHR.png" class="textfoda2">
+
+    <div class="form-container">
+        <img src="logo.png" alt="Logo Locadora" class="logo">
+        <h1>Locadora</h1>
+        <p>Faça seu login</p>
+        <form id="login-form">
+            <label for="login">Usuário:</label>
+            <input type="text" id="login" name="login" placeholder="Digite seu login" required>
+            
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+            
+            <div class="button-group">
+                <button type="submit">Login</button>
+                <button type="button" onclick="window.close()">Fechar</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

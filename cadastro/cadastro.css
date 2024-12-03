@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh; 
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to left, #CACACA 25%, #f2f2f2 95%);
+}
+
+.textfoda {
+    position: fixed;
+    left: 2%;
+    top: 2%;
+    height: 300px;
+    width: 100px;
+}
+
+.textfoda2 {
+    position: fixed;
+    right: 2%;
+    bottom: 2%;
+    height: 300px;
+    width: 100px;
+}
+
+.form-container {
+    margin-top: 100px;
+    padding: 40px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    background: linear-gradient(to right, #CACACA 40%, #f2f2f2 95%);
+    text-align: center;
+    position: relative;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1.1em;
+    margin: 10px 0;
+    display: block;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.button-group {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: none;
+    color: black;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555; /* Cor ao passar o mouse */
+    color: white; /* Muda a cor do texto ao passar o mouse */
+}

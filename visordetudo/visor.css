@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh; 
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to left, #CACACA 25%, #f2f2f2 95%);
+}
+
+.textfoda {
+    position: fixed;
+    left: 2%;
+    top: 2%;
+    height: 300px;
+    width: 100px;
+}
+
+.textfoda2 {
+    position: fixed;
+    right: 2%;
+    bottom: 2%;
+    height: 300px;
+    width: 100px;
+}
+
+.form-container {
+    margin: 50px auto;
+    padding: 20px;
+    width: 80%;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}

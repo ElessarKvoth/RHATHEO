@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Funcionários</title>
+    <link rel="stylesheet" href="cadastro.css"> 
+</head>
+<body>
+    <img src="RHATTEO.png" class="textfoda">
+    <img src="OETTAHR.png" class="textfoda2">
+
+    <div class="form-container">
+        <img src="logo.png" alt="Logo Locadora" class="logo">
+        <h1>Cadastro de Funcionários</h1>
+        <form id="funcionarioForm">
+            <label for="matricula">Matrícula:</label>
+            <input type="text" id="matricula" name="matricula" required><br>
+
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" required><br>
+
+            <label for="departamento">Departamento:</label>
+            <select id="departamento" name="departamento" required>
+                <option value="Atendimento">Atendimento</option>
+                <option value="Administrativo">Administrativo</option>
+                <option value="Financeiro">Financeiro</option>
+                <option value="Diretoria">Diretoria</option>
+                <option value="Copa">Copa</option>
+            </select><br>
+
+            <label for="salario">Salário:</label>
+            <input type="text" id="salario" name="salario" required><br>
+
+            <label for="dataAdmissao">Data de Admissão:</label>
+            <input type="date" id="dataAdmissao" name="dataAdmissao" required><br>
+
+            <label for="quantidadeFilhos">Quantidade de Filhos:</label>
+            <select id="quantidadeFilhos" name="quantidadeFilhos" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select><br>
+
+            <label for="sexo">Sexo:</label>
+            <select id="sexo" name="sexo" required>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Outro">Outro</option>
+            </select><br>
+
+            <label for="status">Status:</label><br>
+            <label><input type="radio" name="status" value="Ativo" required> Ativo</label>
+            <label><input type="radio" name="status" value="Inativo"> Inativo</label><br>
+
+            <button type="button" onclick="salvarFuncionario()">Salvar</button>
+            <button type="button" onclick="window.location.href='../visordetudo/qndt.func.html'">Ver Funcionários</button>
+            <button type="button" onclick="window.location.href='../inicio/inicio.html'">Voltar para Início</button>
+        </form>
+    </div>
+
+    <script>
+        function salvarFuncionario() {
+            const funcionarios = JSON.parse(localStorage.getItem('funcionarios')) || [];
+            const funcionario = {
+                matricula: document.getElementById('matricula').value,
+                nome: document.getElementById('nome').value,
+                departamento: document.getElementById('departamento').value,
+                salario: document.getElementById('salario').value,
+                dataAdmissao: document.getElementById('dataAdmissao').value,
+                quantidadeFilhos: document.getElementById('quantidadeFilhos').value,
+                sexo: document.getElementById('sexo').value,
+                status: document.querySelector('input[name="status"]:checked').value
+            };
+            funcionarios.push(funcionario);
+            localStorage.setItem('funcionarios', JSON.stringify(funcionarios));
+            alert('Funcionário cadastrado com sucesso!');
+        }
+    </script>
+</body>
+</html>

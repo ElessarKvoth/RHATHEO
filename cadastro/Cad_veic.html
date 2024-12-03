@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Veículos</title>
+    <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+    <img src="RHATTEO.png" class="textfoda">
+    <img src="OETTAHR.png" class="textfoda2">
+
+    <div class="form-container">
+        <img src="logo.png" alt="Logo Locadora" class="logo">
+        <h1>Cadastro de Veículos</h1>
+        <form id="veiculoForm">
+            <label for="placa">Placa:</label>
+            <input type="text" id="placa" name="placa" required><br>
+
+            <label for="modelo">Modelo:</label>
+            <input type="text" id="modelo" name="modelo" required><br>
+
+            <label for="marca">Marca:</label>
+            <input type="text" id="marca" name="marca" required><br>
+
+            <label for="ano">Ano:</label>
+            <input type="number" id="ano" name="ano" required><br>
+
+            <label for="cor">Cor:</label>
+            <input type="text" id="cor" name="cor" required><br>
+
+            <label for="combustivel">Combustível:</label>
+            <select id="combustivel" name="combustivel" required>
+                <option value="Alcool">Álcool</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Flex">Flex</option>
+                <option value="Gasolina">Gasolina</option>
+            </select><br>
+
+            <label for="categoria">Categoria:</label>
+            <select id="categoria" name="categoria" required>
+                <option value="Basico">Básico </option>
+                <option value="Utilitario">Utilitário </option>
+                <option value="Luxo">Luxo </option>
+                <option value="Especial">Especial </option>
+            </select><br>
+
+            <button type="button" onclick="salvarVeiculo()">Salvar</button>
+            <button type="button" onclick="window.location.href='../visordetudo/qntd.veic.html'">Ver Veículos</button>
+            <button type="button" onclick="window.location.href='../inicio/inicio.html'">Voltar para Início</button>
+        </form>
+    </div>
+
+    <script>
+        function salvarVeiculo() {
+            const veiculos = JSON.parse(localStorage.getItem('veiculos')) || [];
+            const veiculo = {
+                placa: document.getElementById('placa').value,
+                modelo: document.getElementById('modelo').value,
+                marca: document.getElementById('marca').value,
+                ano: document.getElementById('ano').value,
+                cor: document.getElementById('cor').value,
+                combustivel: document.getElementById('combustivel').value,
+                categoria: document.getElementById('categoria').value
+            };
+            veiculos.push(veiculo);
+            localStorage.setItem('veiculos', JSON.stringify(veiculos));
+            alert('Veículo cadastrado com sucesso!');
+        }
+    </script>
+</body>
+</html>
