@@ -1,0 +1,20 @@
+{
+  "name": "rhatheo",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./ ",
+    "start:dev":"nodemon"
+  },
+  "keywords": [],
+  "author": "ElessarKvoth e Davi",
+  "license": "ISC",
+  "description": "projeto de locadora",
+  "repository": {
+    "type": "git",
+    "url": "RHATHEO"
+  },
+
+  "type": "module"
+}
