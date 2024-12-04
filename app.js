@@ -1,38 +1,16 @@
-import http from 'http';
-import fs from 'fs';
-import rotas from './routes.js';
+import express from 'express';
+import router from './routes/index.js';
 
+const app = express();
+const PORT = 3000;
 
-fs.writeFile('./mensagem.txt', 'Olá Do arquivo', 'utf-8', (erro) => {
-    if(erro) {
-        console.log(`falha ao escrever o arquivo`, erro);
-        return;
-    }
-    console.log('Arquivo creado with sucesso');
+// Middleware para lidar com JSON
+app.use(express.json());
+
+// Usa as rotas definidas no arquivo routes/index.js
+app.use('/', router);
+
+// Inicia o servidor
+app.listen(PORT, () => {
+    console.log(`Servidor RHATHEO rodando em http://localhost:${PORT}`);
 });
-
-fs.readFile('./mensagem.txt', 'utf-8', (erro, conteudo) => {
-    if(erro){
-        console.log('Falha na leitura do arquivo', erro);
-        return;
-    }
-    console.log(`conteudo: ${conteudo}`);
-    iniciaServidorHttp(conteudo);
-    
-});
-
-function iniciaServidorHttp(mensagem) {
-
-    const servidor = http.createServer((req, res) => {
-        rotas(req, res, { conteudo });
-    });
-    
-    const porta = 3000;
-    const host = 'localhost';
-    
-    servidor.listen(porta, host, () => {
-        console.log(`SERVIDOR RHATHEO EM EXECUÇÃO em http://${host}:${porta}/`)
-    })
-
-}
-
