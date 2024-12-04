@@ -1,5 +1,5 @@
 import express from 'express';
-import router from './routes/index.js';
+import router from './routes/index.js'; // Alterando o caminho para a pasta routes
 
 const app = express();
 const PORT = 3000;
@@ -12,5 +12,5 @@ app.use('/', router);
 
 // Inicia o servidor
 app.listen(PORT, () => {
-    console.log(`Servidor RHATHEO rodando em http://localhost:${PORT}`);
+    console.log(`Servidor  RHATHEO rodando em http://localhost:${PORT}`);
 });
