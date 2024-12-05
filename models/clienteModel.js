@@ -1,7 +1,8 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = require('../config/database'); // Arquivo de configuração do banco de dados
+import { Sequelize, DataTypes } from 'sequelize';
+import sequelize from '../config/db.js'; // Arquivo de configuração do banco de dados
 
 const Cliente = sequelize.define('Cliente', {
+  
   clienteCPF: {
     type: DataTypes.INTEGER(9),
     primaryKey: true,
@@ -40,4 +41,4 @@ const Cliente = sequelize.define('Cliente', {
   timestamps: false,
 });
 
-module.exports = Cliente;
+export default Cliente;

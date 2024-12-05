@@ -1,16 +1,22 @@
 import express from 'express';
-import router from './routes/index.js'; // Alterando o caminho para a pasta routes
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import clienteRoutes from './routes/clientesRoutes.js';
 
 const app = express();
 const PORT = 3000;
 
-// Middleware para lidar com JSON
-app.use(express.json());
+// Middlewares
+app.use(cors());
+app.use(bodyParser.json());
 
-// Usa as rotas definidas no arquivo routes/index.js
-app.use('/', router);
+// Rotas
+app.use('/api/clientes', clienteRoutes);
 
-// Inicia o servidor
+// Servir o front-end (opcional)
+app.use(express.static('public'));
+
+// Iniciar o servidor
 app.listen(PORT, () => {
-    console.log(`Servidor  RHATHEO rodando em http://localhost:${PORT}`);
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
