@@ -1,34 +1,27 @@
-import Cliente from '../models/clienteModel.js';
+import Cliente from '../models/clienteModel.js'; // Importando o model
 
-// Listar todos os clientes
-export const listarClientes = async (req, res) => {
-  try {
-    const clientes = await Cliente.findAll(); // Sequelize retorna todos os registros da tabela cliente
-    res.json(clientes);
-  } catch (erro) {
-    console.error('Erro ao buscar clientes:', erro);
-    res.status(500).json({ erro: 'Erro ao buscar clientes' });
-  }
-};
-
-// Criar um novo cliente
+// Função para criar cliente
 export const criarCliente = async (req, res) => {
-  const { clienteCPF, clienteNome, clienteEnde, clienteTel, clienteCidade, clienteDataNasc, clienteCNH, clienteCNHCat } = req.body;
+    try {
+        const { cpf, nome, dataNascimento, endereco, telefone, cidade, sexo, status } = req.body;
 
-  try {
-    const novoCliente = await Cliente.create({
-      clienteCPF,
-      clienteNome,
-      clienteEnde,
-      clienteTel,
-      clienteCidade,
-      clienteDataNasc,
-      clienteCNH,
-      clienteCNHCat,
-    });
-    res.status(201).json({ message: 'Cliente criado com sucesso!', cliente: novoCliente });
-  } catch (erro) {
-    console.error('Erro ao criar cliente:', erro);
-    res.status(500).json({ erro: 'Erro ao criar cliente' });
-  }
+        // Cria o cliente no banco de dados
+        const cliente = await Cliente.create({
+            clienteCPF: cpf,
+            clienteNome: nome,
+            clienteDataNasc: dataNascimento,
+            clienteEnde: endereco,
+            clienteTel: telefone,
+            clienteCidade: cidade,
+            clienteSexo: sexo, // Adicionando o campo sexo
+            clienteStatus: status, // Adicionando o campo status
+            clienteCNH: 123456789,  // Preenchendo com dados temporários, se necessário
+            clienteCNHCat: 'A',     // Preenchendo com dados temporários, se necessário
+        });
+
+        res.status(201).json({ message: 'Cliente criado com sucesso!', cliente });
+    } catch (error) {
+        console.error('Erro ao cadastrar cliente:', error);
+        res.status(500).json({ error: 'Erro ao cadastrar cliente' });
+    }
 };

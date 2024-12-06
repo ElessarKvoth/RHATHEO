@@ -51,7 +51,6 @@
 
     <script>
         function salvarCliente() {
-            const clientes = JSON.parse(localStorage.getItem('clientes')) || [];
             const cliente = {
                 cpf: document.getElementById('cpf').value,
                 nome: document.getElementById('nome').value,
@@ -62,9 +61,29 @@
                 sexo: document.getElementById('sexo').value,
                 status: document.querySelector('input[name="status"]:checked').value
             };
-            clientes.push(cliente);
-            localStorage.setItem('clientes', JSON.stringify(clientes));
-            alert('Cliente cadastrado com sucesso!');
+    
+                    fetch('http://localhost:3000/clientes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cliente)
+})
+            .then(response => {
+                if (!response.ok) {
+                    // Se a resposta não for OK, joga um erro
+                    throw new Error('Erro ao cadastrar cliente');
+                }
+                return response.json(); // Converte a resposta em JSON
+            })
+            .then(data => {
+                alert('Cliente cadastrado com sucesso!');
+                window.location.href = '../visordetudo/qntd.cli.html'; // Redireciona ou realiza outras ações
+            })
+            .catch(error => {
+                console.error('Erro ao enviar os dados:', error);
+                alert('Erro ao cadastrar cliente');
+            });
         }
     </script>
 </body>

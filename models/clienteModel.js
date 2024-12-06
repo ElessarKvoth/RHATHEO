@@ -36,6 +36,11 @@ const Cliente = sequelize.define('Cliente', {
     type: DataTypes.STRING(2),
     allowNull: false,
   },
+  clienteSexo: {
+    type: DataTypes.STRING(10),
+    allowNull: false,
+  },
+
 }, {
   tableName: 'cliente',
   timestamps: false,
